@@ -11,7 +11,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { MessagesComponent } from './components/messages/messages.component';
 import {CustomerService} from './services/customer/customer.service';
 import {MessagesService} from './services/messages/messages.service';
-import {ProductService} from './services/product.service';
+import {ProductService} from './services/product/product.service';
 
 @NgModule({
   declarations: [

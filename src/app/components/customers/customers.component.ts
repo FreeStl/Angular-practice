@@ -52,14 +52,19 @@ export class CustomersComponent implements OnInit {
       );
   }
 
-  editCustomer(customer: Customer) {
+  editCustomer(customer: Customer): void {
     this.editing = true;
-    this.editingCustomer = customer;
+    Object.assign(this.editingCustomer, customer);
   }
 
   clearEditing(): void {
-    this.editing = false;
     this.editingCustomer = new Customer();
+    this.editing = false;
   }
+
+
+
+
+
 
 }
