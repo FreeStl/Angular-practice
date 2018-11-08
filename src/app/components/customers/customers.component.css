@@ -16,3 +16,6 @@ ul li {
 ul li:last-child {
   border-bottom: none
 }
+label {
+  padding: 8px 5px 15px 0;
+}

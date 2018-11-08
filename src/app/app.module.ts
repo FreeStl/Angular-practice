@@ -12,8 +12,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import {CustomerService} from './services/customer/customer.service';
 import {MessagesService} from './services/messages/messages.service';
 import {ProductService} from './services/product/product.service';
-import { SearchComponent } from './components/search/search.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
     ProductsComponent,
     CustomersComponent,
     MessagesComponent,
-    SearchComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

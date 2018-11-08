@@ -1,0 +1,76 @@
+<button (click)="goBack()">go back</button>
+<div class="container">
+  <div *ngIf="!editing">
+    <div class="row">
+      <div class="col-lg-2 col-sm-12">
+        <label class="control-label" for="name">Name:</label>
+      </div>
+      <div class="col-lg-10 col-sm-12" id="name">
+        {{product.name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-sm-12">
+        <label class="control-label" for="price">Price:</label>
+      </div>
+      <div class="col-lg-10 col-sm-12" id="price">
+        {{product.price}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-sm-12">
+        <label class="control-label" for="updated-at">Updated at:</label>
+      </div>
+      <div class="col-lg-10 col-sm-12" id="updated-at">
+        {{product.updatedAt | date:'H:m d.L.y'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-sm-12">
+        <label class="control-label" for="created-at">Created at:</label>
+      </div>
+      <div class="col-lg-10 col-sm-12" id="created-at">
+        {{product.createdAt | date:'H:m d.L.y'}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-sm-12"></div>
+      <div class="col-lg-10 col-sm-12">
+        <button class="btn btn-primary" (click)="editProduct(product)">Edit</button>
+        <button class="btn btn-default" type="reset" (click)="deleteProduct(product.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="editing">
+    <div class="input-form">
+      <div class="row">
+        <div class="col-lg-2 col-sm-12">
+          <label class="control-label" for="edit-name"><span class="required">*</span>Name:</label>
+        </div>
+        <div class="col-lg-10 col-sm-12" id="edit-name">
+          <input type="text" class="form-control"
+                 [(ngModel)]="editingProduct.name" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-sm-12">
+          <label class="control-label" for="edit-price"><span class="required">*</span>Price:</label>
+        </div>
+        <div class="col-lg-10 col-sm-12">
+          <input type="text" class="form-control" id="edit-price"
+                 [(ngModel)]="editingProduct.price" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-sm-12"></div>
+        <div class="col-lg-10 col-sm-12">
+          <button class="btn btn-primary" (click)="updateProduct(editingProduct)"
+                  [disabled]="!editingProduct.name.length || !editingProduct.phone.length
+           || !editingProduct.address.length">Submit</button>
+          <button class="btn btn-default" type="reset" (click)="clearEditing()">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -40,7 +40,7 @@
       <div class="col-lg-2 col-xs-12 list-content">Created</div>
       <div class="col-lg-2 col-xs-12 list-content"></div>
     </li>
-    <li *ngFor="let product of products">
+    <li *ngFor="let product of products" routerLink="/products/{{product.id}}">
       <div *ngIf="!editing || editingProduct.id != product.id">
         <div class="row">
           <div class="col-lg-3 col-xs-12 list-content">{{product.name}}</div>

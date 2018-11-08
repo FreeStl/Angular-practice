@@ -2,9 +2,7 @@
 * {
   box-sizing: border-box;
 }
-label {
-  padding: 8px 5px 15px 0;
-}
+
 
 .input-form{
   border-radius: 5px;

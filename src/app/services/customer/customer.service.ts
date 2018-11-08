@@ -27,6 +27,13 @@ export class CustomerService {
       );
   }
 
+  getCustomer(id: number): Observable<Customer>{
+    return this.http.get<Customer>(this.baseUrl + '/api/customers/' + id)
+      .pipe(
+        catchError(this.handleError<Customer>('getCustomer'))
+      );
+  }
+
   createCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.baseUrl + '/api/customers/', customer, httpOptions)
       .pipe(
