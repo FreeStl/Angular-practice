@@ -1,51 +1,102 @@
-<div class="show-page">
-  <div class="form-horizontal">
-    <form #customerForm="ngForm" (ngSubmit)="createCustomer(customerForm)" novalidate>
-      <input type="text" class="form-control" placeholder="Type a name"
-             required name="name" [(ngModel)]="newCustomer.name" #name="ngModel">
-        <input  type="text" class="form-control" placeholder="Type a phone number"
-               required name="phone" [(ngModel)]="newCustomer.phone" #phone="ngModel">
-        <input type="text" class="form-control" placeholder="Type an address"
-               required name="address" [(ngModel)]="newCustomer.address" #address="ngModel">
-        <button class="btn btn-primary" type="submit" [disabled]="name.invalid
-          || phone.invalid || address.invalid">button</button>
+<div class="container show-page">
+  <button class="btn btn-primary" id="form-button" type="button" (click)="formPopUp()" >Add customer</button>
+  <form class="form-display" id="customer-form" #customerForm="ngForm"
+        (ngSubmit)="createCustomer(customerForm)" novalidate>
+    <div class="input-form">
+      <div class="row">
+        <div class="col-lg-2 col-sm-12">
+          <label class="control-label" for="name"><span class="required">*</span>Name:</label>
+        </div>
+        <div class="col-lg-10 col-sm-12">
+          <input type="text" class="form-control form-padding" id="name" placeholder="Type a name"
+                 required name="name" [(ngModel)]="newCustomer.name" #name="ngModel">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-sm-12">
+          <label class="control-label" for="phone"><span class="required">*</span>Phone Number:</label>
+        </div>
+        <div class="col-lg-10 col-sm-12">
+          <input  type="text" class="form-control form-padding" id="phone" placeholder="Type a price"
+                  required name="phone" [(ngModel)]="newCustomer.phone" #phone="ngModel">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-sm-12">
+          <label class="control-label" for="address"><span class="required">*</span>Address:</label>
+        </div>
+        <div class="col-lg-10 col-sm-12">
+          <input  type="text" class="form-control form-padding" id="address" placeholder="Type an address"
+                  required name="address" [(ngModel)]="newCustomer.address" #address="ngModel">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-sm-12"></div>
+        <div class="col-lg-10 col-sm-12">
+          <button class="btn btn-primary" type="submit" [disabled]="name.invalid
+              || phone.invalid || address.invalid">Submit</button>
+          <button class="btn btn-default" type="reset" (click)="formPopUp()">Dismiss</button>
+        </div>
+      </div>
+    </div>
+  </form>
 
-    </form>
-  </div>
-  <ul class="customers-list">
-    <li *ngFor="let customer of customers">
+  <ul>
+    <li class="row li-title">
+      <div class="col-lg-2 col-xs-12 list-content">Name</div>
+      <div class="col-lg-2 col-xs-12 list-content">Phone number</div>
+      <div class="col-lg-2 col-xs-12 list-content">Address</div>
+      <div class="col-lg-2 col-xs-12 list-content">Updated</div>
+      <div class="col-lg-2 col-xs-12 list-content">Created</div>
+      <div class="col-lg-2 col-xs-12 list-content"></div>
+    </li>
+    <li *ngFor="let customer  of customers">
       <div *ngIf="!editing || editingCustomer.id != customer.id">
-        <span>
-          {{customer.name}}
-          {{customer.phone}}
-          {{customer.address}}
-        </span>
-        <span class="list-field-actions">
-          <a (click)="editCustomer(customer)">
-            <i class="material-icons edit">Edit</i>
-          </a>
-          <a (click)="deleteCustomer(customer.id)">
-            <i class="material-icons delete"> Delete</i>
-          </a>
-        </span>
+        <div class="row">
+          <div class="col-lg-2 col-xs-12 list-content">{{customer.name}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{customer.phone}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{customer.address}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{customer.updatedAt | date:'H:m d.L.y'}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{customer.createdAt | date:'H:m d.L.y'}}</div>
+          <div class="col-lg-1 col-xs-12 list-content">
+            <a (click)="editCustomer(customer)">
+              <i class="glyphicon glyphicon-edit">Edit</i>
+            </a>
+            <a (click)="deleteCustomer(customer.id)">
+              <i class="	glyphicon glyphicon-remove"> Delete</i>
+            </a>
+          </div>
+        </div>
+
       </div>
       <div *ngIf="editing && editingCustomer.id === customer.id">
-        <input type="text" class="input-control"
-               required [(ngModel)]="editingCustomer.name" #name="ngModel">
-        <input  type="text" class="input-control"
-                required [(ngModel)]="editingCustomer.phone" #phone="ngModel">
-        <input type="text" class="input-control"
-               required [(ngModel)]="editingCustomer.address" #address="ngModel">
-        <span class="list-field-actions">
-          <a (click)="updateCustomer(editingCustomer)">
-            <i class="material-icons edit">Update</i>
-          </a>
-          <a (click)="clearEditing()">
-            <i class="material-icons delete"> Dismiss</i>
-          </a>
-        </span>
+        <div class="row">
+          <div class="col-lg-2 col-xs-12 list-content">
+            <input type="text" class="input-control"
+                   [(ngModel)]="editingCustomer.name" required>
+          </div>
+          <div class="col-lg-2 col-xs-12 list-content">
+            <input  type="text" class="input-control"
+                    [(ngModel)]="editingCustomer.phone" required>
+          </div>
+          <div class="col-lg-2 col-xs-12 list-content">
+            <input  type="text" class="input-control"
+                    [(ngModel)]="editingCustomer.address" required>
+          </div>
+          <div class="col-lg-4 col-xs-12 list-content"></div>
+          <div class="col-lg-1 col-xs-12 list-content">
+            <span class="list-field-actions">
+              <a (click)="updateCustomer(editingCustomer)">
+                <i class="glyphicon glyphicon-ok">Update</i>
+              </a>
+              <a (click)="clearEditing()">
+                <i class="glyphicon glyphicon-remove"> Dismiss</i>
+              </a>
+            </span>
+          </div>
+        </div>
       </div>
-
     </li>
   </ul>
+
 </div>

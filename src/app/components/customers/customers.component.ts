@@ -13,6 +13,7 @@ export class CustomersComponent implements OnInit {
   newCustomer: Customer = new Customer();
   editingCustomer: Customer = new Customer();
   editing = false;
+  showCreateForm = false;
 
   constructor(
     private customerService: CustomerService
@@ -63,7 +64,20 @@ export class CustomersComponent implements OnInit {
   }
 
 
-
+  formPopUp(): void {
+    const form = document.getElementById('customer-form');
+    const button = document.getElementById('form-button');
+    if (!this.showCreateForm) {
+      form.style.display = 'block';
+      button.style.display = 'none';
+      this.showCreateForm = true;
+    } else {
+      form.style.display = 'none';
+      button.style.display = 'block';
+      this.newCustomer = new Customer();
+      this.showCreateForm = false;
+    }
+  }
 
 
 

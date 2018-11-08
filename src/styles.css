@@ -1,0 +1,36 @@
+
+* {
+  box-sizing: border-box;
+}
+label {
+  padding: 8px 5px 15px 0;
+}
+
+.input-form{
+  border-radius: 5px;
+  background-color: lightblue;
+  padding: 15px;
+}
+button{
+  margin-right: 10px;
+}
+.required{
+  color: red;
+  font-weight: bold;
+}
+.li-title{
+  background-color: whitesmoke;
+  margin: 0px;
+}
+
+.list-content {
+  width: calc(100% - 160px);
+  margin-left: 10px;
+  overflow: auto;
+}
+
+.form-display{
+  display: none;
+}
+
+

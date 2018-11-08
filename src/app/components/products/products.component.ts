@@ -78,4 +78,5 @@ export class ProductsComponent implements OnInit {
       this.newProduct = new Product();
       this.showCreateForm = false;
     }
+  }
 }

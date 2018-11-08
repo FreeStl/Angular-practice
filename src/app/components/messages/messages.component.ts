@@ -4,7 +4,7 @@ import {MessagesService} from '../../services/messages/messages.service';
 @Component({
   selector: 'app-messages',
   template: `
-    <div *ngIf="messagesService.message.length">
+    <div class="message-position" *ngIf="messagesService.message.length">
         {{messagesService.message}}
       <button class="btn btn-info" (click)="messagesService.clear()">Ok</button>
     </div>`,

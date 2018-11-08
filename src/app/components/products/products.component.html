@@ -1,61 +1,86 @@
 <div class="container show-page">
   <button class="btn btn-primary" id="form-button" type="button" (click)="formPopUp()" >Add product</button>
-    <form class="form-horizontal form-display" id="product-form" #productForm="ngForm"
-          (ngSubmit)="createProduct(productForm)" novalidate>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="name">Name:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="name" placeholder="Type a name"
-                 required name="name" [(ngModel)]="newProduct.name" #name="ngModel">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="price">Price:</label>
-        <div class="col-sm-10">
-          <input  type="text" class="form-control" id="price" placeholder="Type a price"
-                  required name="price" [(ngModel)]="newProduct.price" #price="ngModel">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button class="btn btn-primary" type="submit" [disabled]="name.invalid
-          || price.invalid">Submit</button>
-          <button class="btn btn-default" type="reset" (click)="formPopUp()">Dismiss</button>
-        </div>
-      </div>
-    </form>
+  <form class="form-display" id="product-form" #productForm="ngForm"
+        (ngSubmit)="createProduct(productForm)" novalidate>
+    <div class="input-form">
+      <div class="row">
+               <div class="col-lg-1 col-sm-12">
+                 <label class="control-label" for="name"><span class="required">*</span>Name:</label>
+               </div>
+               <div class="col-lg-11 col-sm-12">
+                 <input type="text" class="form-control" id="name" placeholder="Type a name"
+                        required name="name" [(ngModel)]="newProduct.name" #name="ngModel">
+               </div>
+             </div>
+      <div class="row">
+               <div class="col-lg-1 col-sm-12">
+                 <label class="control-label" for="price"><span class="required">*</span>Price:</label>
+               </div>
+               <div class="col-lg-11 col-sm-12">
+                 <input  type="text" class="form-control" id="price" placeholder="Type a price"
+                         required name="price" [(ngModel)]="newProduct.price" #price="ngModel">
+               </div>
+             </div>
+      <div class="row">
+               <div class="col-lg-1 col-sm-12"></div>
+               <div class="col-lg-11 col-sm-12">
+                 <button class="btn btn-primary" type="submit" [disabled]="name.invalid
+                || price.invalid">Submit</button>
+                 <button class="btn btn-default" type="reset" (click)="formPopUp()">Dismiss</button>
+               </div>
+             </div>
+    </div>
+  </form>
 
-  <ul class="Products-list">
+  <ul>
+    <li class="row li-title">
+      <div class="col-lg-3 col-xs-12 list-content">Name</div>
+      <div class="col-lg-2 col-xs-12 list-content">Price</div>
+      <div class="col-lg-2 col-xs-12 list-content">Updated</div>
+      <div class="col-lg-2 col-xs-12 list-content">Created</div>
+      <div class="col-lg-2 col-xs-12 list-content"></div>
+    </li>
     <li *ngFor="let product of products">
       <div *ngIf="!editing || editingProduct.id != product.id">
-        <span>
-          {{product.name}}
-          {{product.price}}
-        </span>
-        <span class="list-field-actions">
-          <a (click)="editProduct(product)">
-            <i class="material-icons edit">Edit</i>
-          </a>
-          <a (click)="deleteProduct(product.id)">
-            <i class="material-icons delete"> Delete</i>
-          </a>
-        </span>
+        <div class="row">
+          <div class="col-lg-3 col-xs-12 list-content">{{product.name}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{product.price}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{product.updatedAt | date:'H:m d.L.y'}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">{{product.createdAt | date:'H:m d.L.y'}}</div>
+          <div class="col-lg-2 col-xs-12 list-content">
+            <a (click)="editProduct(product)">
+              <i class="glyphicon glyphicon-edit">Edit</i>
+            </a>
+            <a (click)="deleteProduct(product.id)">
+              <i class="	glyphicon glyphicon-remove"> Delete</i>
+            </a>
+          </div>
+        </div>
+
       </div>
       <div *ngIf="editing && editingProduct.id === product.id">
-        <input type="text" class="input-control"
-                [(ngModel)]="editingProduct.name" required>
-        <input  type="text" class="input-control"
-                 [(ngModel)]="editingProduct.price" required>
-        <span class="list-field-actions">
-          <a (click)="updateProduct(editingProduct)">
-            <i class="material-icons edit">Update</i>
-          </a>
-          <a (click)="clearEditing()">
-            <i class="material-icons delete"> Dismiss</i>
-          </a>
-        </span>
+        <div class="row">
+          <div class="col-lg-3 col-xs-12 list-content">
+            <input type="text" class="input-control"
+                   [(ngModel)]="editingProduct.name" required>
+          </div>
+          <div class="col-lg-3 col-xs-12 list-content">
+            <input  type="text" class="input-control"
+                    [(ngModel)]="editingProduct.price" required>
+          </div>
+          <div class="col-lg-3 col-xs-12 list-content"></div>
+          <div class="col-lg-2 col-xs-12 list-content">
+            <span class="list-field-actions">
+              <a (click)="updateProduct(editingProduct)">
+                <i class="glyphicon glyphicon-ok">Update</i>
+              </a>
+              <a (click)="clearEditing()">
+                <i class="glyphicon glyphicon-remove"> Dismiss</i>
+              </a>
+            </span>
+          </div>
+        </div>
       </div>
-
     </li>
   </ul>
 </div>
