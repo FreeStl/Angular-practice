@@ -23,14 +23,14 @@ export class CustomerService {
   getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.baseUrl + '/api/customers/')
       .pipe(
-        catchError(this.handleError('getCustomers', []))
+        catchError(this.handleError('Customers not found', []))
       );
   }
 
-  getCustomer(id: number): Observable<Customer>{
+  getCustomer(id: number): Observable<Customer> {
     return this.http.get<Customer>(this.baseUrl + '/api/customers/' + id)
       .pipe(
-        catchError(this.handleError<Customer>('getCustomer'))
+        catchError(this.handleError<Customer>('Customer not found', null))
       );
   }
 
@@ -38,7 +38,7 @@ export class CustomerService {
     return this.http.post<Customer>(this.baseUrl + '/api/customers/', customer, httpOptions)
       .pipe(
         tap(() => this.log('Customer created')),
-        catchError(this.handleError<Customer>('createCustomers'))
+        catchError(this.handleError<Customer>('Failed to create the customer', null))
       );
   }
 
@@ -46,7 +46,7 @@ export class CustomerService {
     return this.http.put<Customer>(this.baseUrl + '/api/customers/' + customer.id, customer, httpOptions)
       .pipe(
         tap(() => this.log('Customer updated')),
-        catchError(this.handleError<Customer>('updateCustomers'))
+        catchError(this.handleError<Customer>('Failed to update the customer', null))
       );
   }
 
@@ -54,14 +54,14 @@ export class CustomerService {
     return this.http.delete<Customer>(this.baseUrl + '/api/customers/' + id, httpOptions)
       .pipe(
         tap(() => this.log('Customer deleted')),
-        catchError(this.handleError<Customer>('deleteCustomer'))
+        catchError(this.handleError<Customer>('Failed to delete the customer', null))
       );
   }
 
-  private handleError<T> (method = 'noneMethodSpecified', result?: T) {
+  private handleError<T> (reason = 'No exeption Provided', result?: T) {
     return (error: any): Observable<T> => {
-      this.log('CustomerService: ' + method + ' failed: ' + error.message)
-      console.error(method + ' ' + result);
+      this.log(reason + ': ' + error.message)
+      console.error(reason + ' ' + result);
       return of(result as T);
     };
   }
