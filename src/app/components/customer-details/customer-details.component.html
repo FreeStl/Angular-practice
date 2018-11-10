@@ -1,5 +1,5 @@
-<button (click)="goBack()">go back</button>
 <div class="container">
+  <button class="btn" (click)="goBack()">Go back</button>
   <div *ngIf="!editing">
     <div class="row">
       <div class="col-lg-2 col-sm-12">
@@ -30,7 +30,7 @@
         <label class="control-label" for="updated-at">Updated at:</label>
       </div>
       <div class="col-lg-10 col-sm-12" id="updated-at">
-        {{customer.updatedAt | date:'H:m d.L.y'}}
+        {{customer.updatedAt | date:'HH:mm  dd.MM.y'}}
       </div>
     </div>
     <div class="row">
@@ -38,14 +38,14 @@
         <label class="control-label" for="created-at">Created at:</label>
       </div>
       <div class="col-lg-10 col-sm-12" id="created-at">
-        {{customer.createdAt | date:'H:m d.L.y'}}
+        {{customer.createdAt | date:'HH:mm  dd.MM.y'}}
       </div>
     </div>
     <div class="row">
       <div class="col-lg-2 col-sm-12"></div>
       <div class="col-lg-10 col-sm-12">
         <button class="btn btn-primary" (click)="editCustomer(customer)">Edit</button>
-        <button class="btn btn-default" type="reset" (click)="deleteCustomer(customer.id)">Delete</button>
+        <button class="btn btn-danger" type="reset" (click)="deleteCustomer(customer.id)">Delete</button>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CustomerService {
-  private baseUrl = 'http://localhost:8000';
+  baseUrl = 'http://localhost:8000';
 
 
   constructor(

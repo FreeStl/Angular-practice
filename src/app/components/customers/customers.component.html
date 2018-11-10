@@ -17,8 +17,8 @@
           <label class="control-label" for="phone"><span class="required">*</span>Phone Number:</label>
         </div>
         <div class="col-lg-10 col-sm-12">
-          <input  type="text" class="form-control form-padding" id="phone" placeholder="Type a price"
-                  required name="phone" [(ngModel)]="newCustomer.phone" #phone="ngModel">
+          <input  type="number" class="form-control form-padding" id="phone" placeholder="Type a price"
+                  required  name="phone" [(ngModel)]="newCustomer.phone" #phone="ngModel">
         </div>
       </div>
       <div class="row">
@@ -37,6 +37,9 @@
               || phone.invalid || address.invalid">Submit</button>
           <button class="btn btn-default" type="reset" (click)="formPopUp()">Dismiss</button>
         </div>
+        <div class="col-lg-8 col-sm-12" *ngIf="">
+
+        </div>
       </div>
     </div>
   </form>
@@ -45,57 +48,18 @@
     <li class="row li-title">
       <div class="col-lg-2 col-xs-12 list-content">Name</div>
       <div class="col-lg-2 col-xs-12 list-content">Phone number</div>
-      <div class="col-lg-2 col-xs-12 list-content">Address</div>
+      <div class="col-lg-3 col-xs-12 list-content">Address</div>
       <div class="col-lg-2 col-xs-12 list-content">Updated</div>
       <div class="col-lg-2 col-xs-12 list-content">Created</div>
-      <div class="col-lg-2 col-xs-12 list-content"></div>
     </li>
     <li *ngFor="let customer  of customers" routerLink="/customers/{{customer.id}}">
-      <div *ngIf="!editing || editingCustomer.id != customer.id">
         <div class="row">
-          <div class="col-lg-2 col-xs-12 list-content">{{customer.name}}</div>
-          <div class="col-lg-2 col-xs-12 list-content">{{customer.phone}}</div>
-          <div class="col-lg-2 col-xs-12 list-content">{{customer.address}}</div>
-          <div class="col-lg-2 col-xs-12 list-content">{{customer.updatedAt | date:'H:m d.L.y'}}</div>
-          <div class="col-lg-2 col-xs-12 list-content">{{customer.createdAt | date:'H:m d.L.y'}}</div>
-          <div class="col-lg-1 col-xs-12 list-content">
-            <a (click)="editCustomer(customer)">
-              <i class="glyphicon glyphicon-edit">Edit</i>
-            </a>
-            <a (click)="deleteCustomer(customer.id)">
-              <i class="	glyphicon glyphicon-remove"> Delete</i>
-            </a>
-          </div>
+          <div class="col-lg-2 col-xs-12 list-content pointer ">{{customer.name}}</div>
+          <div class="col-lg-2 col-xs-12 list-content pointer ">{{customer.phone}}</div>
+          <div class="col-lg-3 col-xs-12 list-content pointer ">{{customer.address}}</div>
+          <div class="col-lg-2 col-xs-12 list-content pointer ">{{customer.updatedAt | date:'HH:mm  dd.MM.y'}}</div>
+          <div class="col-lg-2 col-xs-12 list-content pointer ">{{customer.createdAt | date:'HH:mm  dd.MM.y'}}</div>
         </div>
-
-      </div>
-      <div *ngIf="editing && editingCustomer.id === customer.id">
-        <div class="row">
-          <div class="col-lg-2 col-xs-12 list-content">
-            <input type="text" class="input-control"
-                   [(ngModel)]="editingCustomer.name" required>
-          </div>
-          <div class="col-lg-2 col-xs-12 list-content">
-            <input  type="text" class="input-control"
-                    [(ngModel)]="editingCustomer.phone" required>
-          </div>
-          <div class="col-lg-2 col-xs-12 list-content">
-            <input  type="text" class="input-control"
-                    [(ngModel)]="editingCustomer.address" required>
-          </div>
-          <div class="col-lg-4 col-xs-12 list-content"></div>
-          <div class="col-lg-1 col-xs-12 list-content">
-            <span class="list-field-actions">
-              <a (click)="updateCustomer(editingCustomer)">
-                <i class="glyphicon glyphicon-ok">Update</i>
-              </a>
-              <a (click)="clearEditing()">
-                <i class="glyphicon glyphicon-remove"> Dismiss</i>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
     </li>
   </ul>
 

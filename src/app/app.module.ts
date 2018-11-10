@@ -29,7 +29,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     CustomerService,

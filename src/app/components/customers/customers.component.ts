@@ -11,8 +11,6 @@ import {CustomerService} from '../../services/customer/customer.service';
 export class CustomersComponent implements OnInit {
   customers: Customer[];
   newCustomer: Customer = new Customer();
-  editingCustomer: Customer = new Customer();
-  editing = false;
   showCreateForm = false;
 
   constructor(
@@ -36,33 +34,6 @@ export class CustomersComponent implements OnInit {
         this.customers.unshift(customer);
       });
   }
-
-  updateCustomer(editedCustomer: Customer): void {
-    this.customerService.updateCustomer(editedCustomer)
-      .subscribe(customer => {
-        const currentCustomer = this.customers.find(item => item.id === item.id);
-        Object.assign(currentCustomer, customer);
-        this.clearEditing();
-      });
-  }
-
-  deleteCustomer(id: string): void {
-    this.customerService.deleteCustomer(id)
-      .subscribe(
-        () => this.customers = this.customers.filter(item => item.id !== +id)
-      );
-  }
-
-  editCustomer(customer: Customer): void {
-    this.editing = true;
-    Object.assign(this.editingCustomer, customer);
-  }
-
-  clearEditing(): void {
-    this.editingCustomer = new Customer();
-    this.editing = false;
-  }
-
 
   formPopUp(): void {
     const form = document.getElementById('customer-form');
