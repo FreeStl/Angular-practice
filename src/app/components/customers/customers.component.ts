@@ -31,7 +31,9 @@ export class CustomersComponent implements OnInit {
       .subscribe(customer => {
         customerForm.reset();
         this.newCustomer = new Customer;
-        this.customers.unshift(customer);
+        if (customer != null) {
+          this.customers.unshift(customer);
+        }
       });
   }
 

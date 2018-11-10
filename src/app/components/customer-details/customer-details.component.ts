@@ -33,8 +33,10 @@ export class CustomerDetailsComponent implements OnInit {
   updateCustomer(editedCustomer: Customer): void {
     this.customerService.updateCustomer(editedCustomer)
       .subscribe(customer => {
-        Object.assign(this.customer, customer);
         this.clearEditing();
+        if (customer != null) {
+          Object.assign(this.customer, customer);
+        }
       });
   }
 

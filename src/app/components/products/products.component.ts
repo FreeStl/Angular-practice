@@ -35,7 +35,9 @@ export class ProductsComponent implements OnInit {
       .subscribe(product => {
         productForm.reset();
         this.newProduct = new Product;
-        this.products.unshift(product);
+        if (product != null) {
+          this.products.unshift(product);
+        }
       });
   }
 

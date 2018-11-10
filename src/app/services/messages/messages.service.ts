@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class MessagesService {
 
-  message: string ='';
+  message: string = '';
 
   constructor() { }
 

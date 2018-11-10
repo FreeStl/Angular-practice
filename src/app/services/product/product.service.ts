@@ -4,7 +4,6 @@ import {MessagesService} from '../messages/messages.service';
 import {Observable, of} from 'rxjs';
 import {Product} from '../../components/products/product';
 import {catchError, tap} from 'rxjs/operators';
-import {Customer} from '../../components/customers/customer';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

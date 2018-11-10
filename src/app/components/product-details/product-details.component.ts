@@ -36,7 +36,9 @@ export class ProductDetailsComponent implements OnInit {
   updateProduct(editedProduct: Product): void {
     this.productService.updateProduct(editedProduct)
       .subscribe(product => {
-        Object.assign(this.product, product);
+        if (product != null) {
+          Object.assign(this.product, product);
+        }
         this.clearEditing();
       });
   }
