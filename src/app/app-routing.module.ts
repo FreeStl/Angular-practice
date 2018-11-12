@@ -5,7 +5,6 @@ import {CustomersComponent} from './components/customers/customers.component';
 import {ProductsComponent} from './components/products/products.component';
 import {CustomerDetailsComponent} from './components/customer-details/customer-details.component';
 import {ProductDetailsComponent} from './components/product-details/product-details.component';
-import {CommonModule} from '@angular/common';
 
 const routers: Routes = [
   {path: 'customers', component: CustomersComponent},

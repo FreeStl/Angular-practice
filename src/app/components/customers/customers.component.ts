@@ -36,7 +36,7 @@ export class CustomersComponent implements OnInit {
         }
       });
   }
-
+  // when 'Add customer' is pressed - show form for adding new customer, when 'submit'/'reset' is preset - hide the form
   formPopUp(): void {
     const form = document.getElementById('customer-form');
     const button = document.getElementById('form-button');

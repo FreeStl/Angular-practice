@@ -17,3 +17,6 @@ ul li:last-child {
 .form-display{
   display: none;
 }
+label {
+  padding: 8px 5px 15px 0;
+}

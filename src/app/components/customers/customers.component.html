@@ -33,8 +33,7 @@
       <div class="row">
         <div class="col-lg-2 col-sm-12"></div>
         <div class="col-lg-10 col-sm-12">
-          <button class="btn btn-primary" type="submit" [disabled]="name.invalid
-              || phone.invalid || address.invalid">Submit</button>
+          <button class="btn btn-primary" type="submit" [disabled]="customerForm.invalid">Submit</button>
           <button class="btn btn-default" type="reset" (click)="formPopUp()">Dismiss</button>
         </div>
         <div class="col-lg-8 col-sm-12" *ngIf="">
@@ -53,7 +52,7 @@
       <div class="col-lg-2 col-xs-12 list-content">Created</div>
     </li>
     <li *ngFor="let customer  of customers" routerLink="/customers/{{customer.id}}">
-        <div class="row">
+        <div class="row result-row">
           <div class="col-lg-2 col-xs-12 list-content pointer ">{{customer.name}}</div>
           <div class="col-lg-2 col-xs-12 list-content pointer ">{{customer.phone}}</div>
           <div class="col-lg-3 col-xs-12 list-content pointer ">{{customer.address}}</div>

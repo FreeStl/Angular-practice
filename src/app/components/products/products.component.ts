@@ -13,8 +13,6 @@ import {ProductService} from '../../services/product/product.service';
 export class ProductsComponent implements OnInit {
   products: Product[];
   newProduct: Product = new Product();
-  editingProduct: Product = new Product();
-  editing = false;
   showCreateForm = false;
 
   constructor(
@@ -41,32 +39,7 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-  updateProduct(editedProduct: Product): void {
-    this.productService.updateProduct(editedProduct)
-      .subscribe(product => {
-        const currentProduct = this.products.find(item => item.id === item.id);
-        Object.assign(currentProduct, product);
-        this.clearEditing();
-      });
-  }
-
-  deleteProduct(id: string): void {
-    this.productService.deleteProduct(id)
-      .subscribe(
-        () => this.products = this.products.filter(item => item.id !== +id)
-      );
-  }
-
-  editProduct(product: Product): void {
-    this.editing = true;
-    Object.assign(this.editingProduct, product);
-  }
-
-  clearEditing(): void {
-    this.editingProduct = new Product();
-    this.editing = false;
-  }
-
+  // when 'Add product' is pressed - show form for adding new product, when 'submit'/'reset' is preset - hide the form
   formPopUp(): void {
     const form = document.getElementById('product-form');
     const button = document.getElementById('form-button');

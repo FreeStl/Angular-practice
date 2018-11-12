@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   product: Product = new Product();
   editingProduct: Product = new Product();
   editing = false;
+  notFound = false;
 
   constructor(
     private productService: ProductService,
@@ -26,11 +27,17 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.getProduct();
   }
-
+  // if object exist show it, if not - show error
   getProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id)
-      .subscribe(product => this.product = product);
+      .subscribe(product => {
+        if (product != null) {
+          this.product = product;
+        } else {
+          this.notFound = true;
+        }
+      });
   }
 
   updateProduct(editedProduct: Product): void {
@@ -47,7 +54,7 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.deleteProduct(id)
       .subscribe(() => this.goBack());
   }
-
+  // enter the editing mode
   editProduct(product: Product): void {
     this.editing = true;
     Object.assign(this.editingProduct, product);
@@ -58,9 +65,9 @@ export class ProductDetailsComponent implements OnInit {
     this.editing = false;
   }
 
-
+  // go back to the list
   goBack(): void {
     this.location.back();
-    // this.router.navigateByUrl('/products');
+    // can also be this.router.navigateByUrl('/products');
   }
 }

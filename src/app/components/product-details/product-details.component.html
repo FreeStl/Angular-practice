@@ -1,75 +1,80 @@
 <div class="container">
   <button class="btn" (click)="goBack()">Go back</button>
-  <div *ngIf="!editing">
-    <div class="row" >
-      <div class="col-lg-2 col-xs-12">
-        <label class="control-label" for="name">Name:</label>
-      </div>
-      <div class="col-lg-10 col-xs-12 center-block" id="name">
-        {{product.name}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-2 col-xs-12">
-        <label class="control-label" for="price">Price:</label>
-      </div>
-      <div class="col-lg-10 col-xs-12" id="price">
-        {{product.price}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-2 col-xs-12">
-        <label class="control-label" for="updated-at">Updated at:</label>
-      </div>
-      <div class="col-lg-10 col-xs-12" id="updated-at">
-        {{product.updatedAt | date:'HH:mm  dd.MM.y'}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-2 col-xs-12">
-        <label class="control-label" for="created-at">Created at:</label>
-      </div>
-      <div class="col-lg-10 col-xs-12" id="created-at">
-        {{product.createdAt | date:'HH:mm  dd.MM.y'}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-2 col-xs-12"></div>
-      <div class="col-lg-10 col-xs-12">
-        <button class="btn btn-primary" (click)="editProduct(product)">Edit</button>
-        <button class="btn btn-danger" type="reset" (click)="deleteProduct(product.id)">Delete</button>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="editing">
-    <div class="input-form">
-      <div class="row">
+  <div *ngIf="!notFound">
+    <div *ngIf="!editing">
+      <div class="row" >
         <div class="col-lg-2 col-xs-12">
-          <label class="control-label" for="edit-name"><span class="required">*</span>Name:</label>
+          <label class="control-label" for="name">Name:</label>
         </div>
-        <div class="col-lg-10 col-xs-12" id="edit-name">
-          <input type="text" class="form-control"
-                 [(ngModel)]="editingProduct.name" required>
+        <div class="col-lg-10 col-xs-12 center-block" id="name">
+          {{product.name}}
         </div>
       </div>
       <div class="row">
         <div class="col-lg-2 col-xs-12">
-          <label class="control-label" for="edit-price"><span class="required">*</span>Price:</label>
+          <label class="control-label" for="price">Price:</label>
         </div>
-        <div class="col-lg-10 col-xs-12">
-          <input type="text" class="form-control" id="edit-price"
-                 [(ngModel)]="editingProduct.price" required>
+        <div class="col-lg-10 col-xs-12" id="price">
+          {{product.price}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-xs-12">
+          <label class="control-label" for="updated-at">Updated at:</label>
+        </div>
+        <div class="col-lg-10 col-xs-12" id="updated-at">
+          {{product.updatedAt | date:'HH:mm  dd.MM.y'}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-xs-12">
+          <label class="control-label" for="created-at">Created at:</label>
+        </div>
+        <div class="col-lg-10 col-xs-12" id="created-at">
+          {{product.createdAt | date:'HH:mm  dd.MM.y'}}
         </div>
       </div>
       <div class="row">
         <div class="col-lg-2 col-xs-12"></div>
         <div class="col-lg-10 col-xs-12">
-          <button class="btn btn-primary" (click)="updateProduct(editingProduct)"
-                  [disabled]="!editingProduct.name.length || !editingProduct.price">Submit</button>
-          <button class="btn btn-default" type="reset" (click)="clearEditing()">Reset</button>
+          <button class="btn btn-primary" (click)="editProduct(product)">Edit</button>
+          <button class="btn btn-danger" type="reset" (click)="deleteProduct(product.id)">Delete</button>
         </div>
       </div>
     </div>
+
+    <div *ngIf="editing">
+      <div class="input-form">
+        <div class="row">
+          <div class="col-lg-2 col-xs-12">
+            <label class="control-label" for="edit-name"><span class="required">*</span>Name:</label>
+          </div>
+          <div class="col-lg-10 col-xs-12" id="edit-name">
+            <input type="text" class="form-control"
+                   [(ngModel)]="editingProduct.name" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2 col-xs-12">
+            <label class="control-label" for="edit-price"><span class="required">*</span>Price:</label>
+          </div>
+          <div class="col-lg-10 col-xs-12">
+            <input type="text" class="form-control" id="edit-price"
+                   [(ngModel)]="editingProduct.price" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2 col-xs-12"></div>
+          <div class="col-lg-10 col-xs-12">
+            <button class="btn btn-primary" (click)="updateProduct(editingProduct)"
+                    [disabled]="!editingProduct.name.length || !editingProduct.price">Submit</button>
+            <button class="btn btn-default" type="reset" (click)="clearEditing()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="notFound">
+    <h1><span class="required">404: Product Not Found</span></h1>
   </div>
 </div>

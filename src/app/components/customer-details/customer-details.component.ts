@@ -13,6 +13,7 @@ export class CustomerDetailsComponent implements OnInit {
   customer: Customer = new Customer();
   editingCustomer: Customer = new Customer();
   editing = false;
+  notFound = false;
 
   constructor(
     private customerService: CustomerService,
@@ -23,11 +24,17 @@ export class CustomerDetailsComponent implements OnInit {
   ngOnInit() {
     this.getCustomer();
   }
-
+  // if object exist show it, if not - show error
   getCustomer(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.customerService.getCustomer(id)
-      .subscribe(customer => this.customer = customer);
+      .subscribe(customer => {
+        if (customer != null) {
+          this.customer = customer;
+        } else {
+          this.notFound = true;
+        }
+      });
   }
 
   updateCustomer(editedCustomer: Customer): void {
@@ -44,7 +51,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService.deleteCustomer(id)
       .subscribe(() => this.goBack());
   }
-
+  // enter the editing mode
   editCustomer(customer: Customer): void {
     this.editing = true;
     Object.assign(this.editingCustomer, customer);
@@ -55,8 +62,9 @@ export class CustomerDetailsComponent implements OnInit {
     this.editing = false;
   }
 
-
+  // go back to the list
   goBack(): void {
     this.location.back();
+    // can also be this.router.navigateByUrl('/products');
   }
 }
